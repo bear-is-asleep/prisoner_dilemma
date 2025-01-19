@@ -1,0 +1,16 @@
+{
+  "agents": [
+        {"name": "Alice", "type": "TitForTat"},
+        {"name": "Bob", "type": "Random"},
+        {"name": "Charlie", "type": "TitForTwoTats"},
+        {"name": "David", "type": "Grudger"},
+        {"name": "Elijah", "type": "Cooperator"},
+        {"name": "Penis", "type": "Defector"}
+        ],
+  "payoff_matrix": {
+      "cooperate": {"cooperate": [3, 3], "defect": [0, 5]},
+      "defect": {"cooperate": [5, 0], "defect": [1, 1]}
+  },
+  "rounds": 20,
+  "simulations": 1
+}
