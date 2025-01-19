@@ -58,6 +58,9 @@ class Agent:
         self.oponent_history = {}
         self.score = 0
         self.label = ''
+        self.description = ''
+    def __str__(self):
+        return f'{self.name} ({self.label}): {self.description}'
 
     def choose_action(self, opponent_name):
         """

@@ -20,6 +20,27 @@ class PrisonersDilemma:
         self.agents = [factory.create(agent['type'], agent['name']) for agent in config['agents']]
         self.payoff_matrix = config['payoff_matrix']
         self.rounds = config['rounds']
+        self.simulations = config['simulations']
+    def __str__(self):
+        """
+        
+        """
+        print("Agents")
+        print("-"*60)
+        for agent in self.agents:
+            print(agent)
+        print("-"*60)
+        print("Payoff Matrix")
+        print("-"*60)
+        for action1, payoff in self.payoff_matrix.items():
+            for action2, payoff in payoff.items():
+                print(f"{action1} vs {action2}: {payoff}")
+        print("-"*60)
+        print(f"Rounds: {self.rounds}")
+        print(f"Simulations: {self.simulations}")
+        print("-"*60)
+        
+                
 
     def play_round(self, agent1, agent2):
         """
@@ -64,6 +85,7 @@ class PrisonersDilemma:
         """
         Run the game for the specified number of rounds.
         """
+        self.__str__()
         for _ in range(self.rounds):
             for i, agent1 in enumerate(self.agents):
                 for agent2 in self.agents[i+1:]:
@@ -117,8 +139,8 @@ class PrisonersDilemma:
                     plt.savefig(f"games/{agent.name}_vs_{opponent_name}.png")
                     plt.close(fig)
                 else:
-                  plt.show()
-    def visualize_scores(self):
+                    plt.show()
+    def visualize_scores(self,save=False):
         """
         Visualize the scores of the agents.
         """
@@ -129,7 +151,11 @@ class PrisonersDilemma:
         ax.bar(names_labels, scores)
         ax.set_ylabel('Score')
         ax.set_title('Agent Scores')
-        plt.show()
+        if save:
+            plt.savefig('games/scores.png')
+            plt.close(fig)
+        else:
+            plt.show()
 
 
 def load_config(config_file):
